@@ -53,7 +53,7 @@ int main(int argc, char *argv[]){
   if (is_arr_empty(alphabet, EN_ALPHABET_LEN)) {
     printf("Not found\n");
   }else if (match_count==1) {
-    printf("Match: %s", best_match);
+    printf("Found: %s", best_match);
   }else {
     printf("Enable: ");
     print_non_null_letters(alphabet, EN_ALPHABET_LEN);
