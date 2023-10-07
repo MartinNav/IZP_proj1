@@ -1,3 +1,9 @@
+/*
+ *  Author: Martin Navrátil (xnavram00@stud.fit.vutbr.cz)
+ *  
+ * */
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
@@ -15,6 +21,7 @@ void cmp_and_save(char *dest, char *param, char *inpt);
 void print_non_null_letters(char *arr, int len);
 bool is_arr_empty(char *arr, int len);
 void cpy_str_arr(char *dest, char *origin);
+int get_prefix_end_indx(char *prefix, char *str);
 
 
 
@@ -25,7 +32,7 @@ int main(int argc, char *argv[]){
   char address[ADDRESS_LEN] ={0};
   char best_match[ADDRESS_LEN]={0};
   char alphabet[EN_ALPHABET_LEN]={0};
-  
+  int match_count = 0; 
   if (argc!=1){
     cpy_str_arr(input, argv[1]);
     to_upper(input);
@@ -34,16 +41,19 @@ int main(int argc, char *argv[]){
     clean_arr(address, ADDRESS_LEN);
     scanf("%s",address);
     to_upper(address);
-    //Must change because currently empty string is UB
     cmp_and_save(alphabet, input, address);
+    if (get_prefix_end_indx(input, address)>0) {
+      cpy_str_arr(best_match, address);
+      match_count++;
+
+    }
   } while(address[0]!='\0');
 
 
   if (is_arr_empty(alphabet, EN_ALPHABET_LEN)) {
     printf("Not found\n");
-  }else if (!is_arr_empty(best_match, ADDRESS_LEN)) {
-    //TODO: IMPLEMENT
-    printf("IMPLEMENT");
+  }else if (match_count==1) {
+    printf("Match: %s", best_match);
   }else {
     printf("Enable: ");
     print_non_null_letters(alphabet, EN_ALPHABET_LEN);
@@ -55,6 +65,20 @@ int main(int argc, char *argv[]){
 
 }
 
+
+
+int get_prefix_end_indx(char *prefix, char *str){
+  int i = 0;
+  while (prefix[i]!='\0') {
+    if (prefix[i]==str[i]) {
+      i++;
+    }else{
+      return -1;
+    }
+  }
+
+  return i;
+}
 void cpy_str_arr(char *dest, char *origin){
   int i = 0;
   while (origin[i]!='\0') {
@@ -86,18 +110,19 @@ void print_non_null_letters(char *arr, int len){
  *
 */
 void cmp_and_save(char *dest, char *param, char *inpt){
-  int i = 0;
+  //int i = 0;
 
-   while(param[i]!='\0'){
+   /*while(param[i]!='\0'){
     if(inpt[i]==param[i] ){
       
     }else{
       return;
     }
     i++;
-  }
+  }*/
+  int i= get_prefix_end_indx(param, inpt);
+  if(i!=-1)
   dest[inpt[i]-'A'] = inpt[i];
-  printf("%c\n", inpt[i]);
 }
 
 
