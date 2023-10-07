@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
   } while(address[0]!='\0');
 
 
-  if (is_arr_empty(alphabet, EN_ALPHABET_LEN)) {
+  if (is_arr_empty(alphabet, EN_ALPHABET_LEN)&&match_count==0) {
     printf("Not found\n");
   }else if (match_count==1) {
     printf("Found: %s", best_match);
@@ -110,16 +110,6 @@ void print_non_null_letters(char *arr, int len){
  *
 */
 void cmp_and_save(char *dest, char *param, char *inpt){
-  //int i = 0;
-
-   /*while(param[i]!='\0'){
-    if(inpt[i]==param[i] ){
-      
-    }else{
-      return;
-    }
-    i++;
-  }*/
   int i= get_prefix_end_indx(param, inpt);
   if(i!=-1)
   dest[inpt[i]-'A'] = inpt[i];
