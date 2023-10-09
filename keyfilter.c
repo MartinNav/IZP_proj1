@@ -16,11 +16,11 @@
 //Function definitions
 void to_upper(char *arr);
 void clean_arr(char *arr, int len);
-void cmp_and_save(char *dest, char *param, char *inpt);
-void print_non_null_letters(char *arr, int len);
-bool is_arr_empty(char *arr, int len);
-void cpy_str_arr(char *dest, char *origin);
-int get_prefix_end_indx(char *prefix, char *str);
+void cmp_and_save(char *dest,const char *param, const char *inpt);
+void print_non_null_letters(const char *arr, int len);
+bool is_arr_empty(const char *arr, int len);
+void cpy_str_arr(char *dest, const char *origin);
+int get_prefix_end_indx(const char *prefix,const char *str);
 
 
 
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
  * This function will return end index of prefix substring if there is any otherwise it will return negative one
  * */
 
-int get_prefix_end_indx(char *prefix, char *str){
+int get_prefix_end_indx(const char *prefix,const char *str){
   int i = 0;
   while (prefix[i]!='\0') {
     if (prefix[i]==str[i]) {
@@ -80,7 +80,7 @@ int get_prefix_end_indx(char *prefix, char *str){
 
   return i;
 }
-void cpy_str_arr(char *dest, char *origin){
+void cpy_str_arr(char *dest, const char *origin){
   int i = 0;
   while (origin[i]!='\0') {
     dest[i] = origin[i];
@@ -88,7 +88,7 @@ void cpy_str_arr(char *dest, char *origin){
   }
 }
 
-bool is_arr_empty(char *arr, int len){
+bool is_arr_empty(const char *arr, int len){
   for (int i = 0; i < len; i++) {
     if (arr[i]!='\0') {
       return false;
@@ -101,7 +101,7 @@ bool is_arr_empty(char *arr, int len){
  * It will take array as reference and itterate througth the array until it will hit end of array specified by the 'len' parameter
  * This function makes lots of syscalls (by calling printf)
  * */
-void print_non_null_letters(char *arr, int len){
+void print_non_null_letters(const char *arr, int len){
   for (int i = 0; i < len; i++) {
     if (arr[i]!='\0'){
       printf("%c",arr[i]);
@@ -114,7 +114,7 @@ void print_non_null_letters(char *arr, int len){
  * inpt: pointer to input string
  *
 */
-void cmp_and_save(char *dest, char *param, char *inpt){
+void cmp_and_save(char *dest,const char *param, const char *inpt){
   int i= get_prefix_end_indx(param, inpt);
   if(i!=-1)
   dest[inpt[i]-'A'] = inpt[i];
