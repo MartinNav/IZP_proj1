@@ -103,7 +103,7 @@ void print_non_null_letters(char *arr, int len){
   }
 }
 /*
- * dest: pointer to array whe I will save next string
+ * dest: pointer to array whe I will save next string 
  * param: pointer to parameter array that I will compare with input
  * inpt: pointer to input string
  *
@@ -114,13 +114,18 @@ void cmp_and_save(char *dest, char *param, char *inpt){
   dest[inpt[i]-'A'] = inpt[i];
 }
 
-
+/*
+ *This function will take array by reference and array length by value and than it will fill the array by null characters 
+ *
+ * */
 void clean_arr(char *arr, int len){
   for (int i = 0; i < len; i++) {
     arr[i] = '\0';
   }
 }
-
+/*
+*Will convert small letters in alphabeth and than convert them to theirs upper case version (Non engish alphabeth characters will be ignored)
+* */
 void to_upper(char *arr){
   int i = 0;
   while (arr[i]!='\0') {
