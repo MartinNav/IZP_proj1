@@ -64,7 +64,9 @@ int main(int argc, char *argv[]){
 
 }
 
-
+/*
+ * This function will return end index of prefix substring if there is any otherwise it will return negative one
+ * */
 
 int get_prefix_end_indx(char *prefix, char *str){
   int i = 0;
@@ -94,7 +96,11 @@ bool is_arr_empty(char *arr, int len){
   }
   return true;
 }
-
+/*
+ * !This function contains side effects
+ * It will take array as reference and itterate througth the array until it will hit end of array specified by the 'len' parameter
+ * This function makes lots of syscalls (by calling printf)
+ * */
 void print_non_null_letters(char *arr, int len){
   for (int i = 0; i < len; i++) {
     if (arr[i]!='\0'){
