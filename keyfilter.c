@@ -32,9 +32,15 @@ int main(int argc, char *argv[]){
   char best_match[ADDRESS_LEN]={0};
   char alphabet[EN_ALPHABET_LEN]={0};
   int match_count = 0; 
-  if (argc!=1){
+  if (argc==1) {
+    //Will let the state to be as is
+  }
+  else if (argc==2){
     cpy_str_arr(input, argv[1]);
     to_upper(input);
+  }else{
+    printf("Error:Too many arguments\n");
+    return -1;
   }
   do {
     clean_arr(address, ADDRESS_LEN);
