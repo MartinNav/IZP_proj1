@@ -9,8 +9,8 @@
 
 //Constants defined as macro
 #define ADDRESS_LEN 128
-#define EN_ALPHABET_LEN 26
-
+//To represent number of printable ascii characters (I support even special characters)
+#define ALPHABET 127
 
 
 //Function definitions
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
   char input[ADDRESS_LEN]={0};
   char address[ADDRESS_LEN] ={0};
   char best_match[ADDRESS_LEN]={0};
-  char alphabet[EN_ALPHABET_LEN]={0};
+  char alphabet[ALPHABET]={0};
   int match_count = 0; 
   if (argc==1) {
     //Will let the state to be as is
@@ -44,6 +44,7 @@ int main(int argc, char *argv[]){
   }
   do {
     clean_arr(address, ADDRESS_LEN);
+    //These wierd characters are here to spaces as part of adress and not to handle them as differend address
     scanf("%[^\n]%*c",address);
     to_upper(address);
     cmp_and_save(alphabet, input, address);
@@ -55,13 +56,13 @@ int main(int argc, char *argv[]){
   } while(address[0]!='\0');
 
 
-  if (is_arr_empty(alphabet, EN_ALPHABET_LEN)&&match_count==0) {
+  if (is_arr_empty(alphabet, ALPHABET)&&match_count==0) {
     printf("Not found\n");
   }else if (match_count==1) {
     printf("Found: %s\n", best_match);
   }else {
     printf("Enable: ");
-    print_non_null_letters(alphabet, EN_ALPHABET_LEN);
+    print_non_null_letters(alphabet, ALPHABET);
     printf("\n");
   }
 
@@ -123,7 +124,7 @@ void print_non_null_letters(const char *arr, int len){
 void cmp_and_save(char *dest,const char *param, const char *inpt){
   int i= get_prefix_end_indx(param, inpt);
   if(i!=-1)
-  dest[inpt[i]-'A'] = inpt[i];
+  dest[inpt[i]-1] = inpt[i];
 }
 
 /*
