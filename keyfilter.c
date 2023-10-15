@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
   }
   do {
     clean_arr(address, ADDRESS_LEN);
-    scanf("%s",address);
+    scanf("%[^\n]%*c",address);
     to_upper(address);
     cmp_and_save(alphabet, input, address);
     if (get_prefix_end_indx(input, address)>0) {
