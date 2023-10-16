@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
   }
   do {
     clean_arr(address, ADDRESS_LEN);
-    //These wierd characters are here to spaces as part of adress and not to handle them as differend address
+    //These weird characters are here to accept spaces as part of adress and not to handle them as separate address
     scanf("%[^\n]%*c",address);
     to_upper(address);
     cmp_and_save(alphabet, input, address);
@@ -72,7 +72,7 @@ int main(int argc, char *argv[]){
 }
 
 /*
- * This function will return end index of prefix substring if there is any otherwise it will return negative one
+ * This function will return end index of prefix substring if there is any otherwise it will return negative number 
  * */
 
 int get_prefix_end_indx(const char *prefix,const char *str){
@@ -87,6 +87,8 @@ int get_prefix_end_indx(const char *prefix,const char *str){
 
   return i;
 }
+/*This function will be copying chars from one array to another until it hits null terminator
+ * */
 void cpy_str_arr(char *dest, const char *origin){
   int i = 0;
   while (origin[i]!='\0') {
@@ -137,7 +139,7 @@ void clean_arr(char *arr, int len){
   }
 }
 /*
-*Will convert small letters in alphabeth and than convert them to theirs upper case version (Non engish alphabeth characters will be ignored)
+*Will convert small letters in alphabeth to upper case (Non engish alphabeth characters will be ignored)
 * */
 void to_upper(char *arr){
   int i = 0;
