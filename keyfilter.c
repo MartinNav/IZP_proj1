@@ -45,7 +45,12 @@ int main(int argc, char *argv[]){
   do {
     clean_arr(address, ADDRESS_LEN);
     //These weird characters are here to accept spaces as part of adress and not to handle them as separate address
-    scanf("%[^\n]%*c",address);
+    int strlen = 0;
+    scanf("%[^\n]%*c%n",address, &strlen);
+    if (strlen>=ADDRESS_LEN) {
+      fprintf(stderr, "ERROR:address is too long\n");
+      return -1;
+    }
     to_upper(address);
     cmp_and_save(alphabet, input, address);
     if (get_prefix_end_indx(input, address)>0) {
