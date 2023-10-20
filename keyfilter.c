@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
     cpy_str_arr(input, argv[1]);
     to_upper(input);
   }else{
-    printf("Error:Too many arguments\n");
+    fprintf(stderr,"Error:Too many arguments\n");
     return -1;
   }
   do {
